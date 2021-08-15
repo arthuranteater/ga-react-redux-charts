@@ -15,7 +15,7 @@ const initialState = {
 export const runFetch = createAsyncThunk("counter/getData", async (amount) => {
   const response = await getData();
   // The value we return becomes the `fulfilled` action payload
-  return response.data;
+  return response;
 });
 
 export const counterSlice = createSlice({
@@ -30,7 +30,7 @@ export const counterSlice = createSlice({
       })
       .addCase(runFetch.fulfilled, (state, action) => {
         state.status = "idle";
-        state.value += action.payload;
+        state.value = action.payload;
       });
   },
 });
@@ -40,6 +40,7 @@ export const counterSlice = createSlice({
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectData = (state) => state.counter.value;
 export const selectLimit = (state) => state.counter.limit;
+export const selectStatus = (state) => state.counter.status;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
