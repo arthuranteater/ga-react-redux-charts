@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import { selectData, selectStatus } from "./tableSlice";
 import GridLoader from "react-spinners/GridLoader";
@@ -45,7 +45,7 @@ export function Table() {
   return (
     <>
       <button
-        style={{ marginBottom: "20px" }}
+        style={{ margin: "20px" }}
         onClick={() => {
           setSorted(value.map((x) => x));
           setActiveColumn({ name: "", asc: false });
