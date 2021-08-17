@@ -16,7 +16,7 @@ Start the server:
 
 - ```npm start```
 
-OR use mock json-server on client
+OR use mock json-server on client:
 
 - update assetAPI as specified in file
 
