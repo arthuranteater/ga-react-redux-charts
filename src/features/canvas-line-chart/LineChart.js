@@ -10,8 +10,8 @@ export function LineChart() {
   const [dataPoints, setDataPoints] = useState(null);
   const [cat, setCat] = useState("NetWin");
   const [cats, setCats] = useState(null);
-  const [isPayback, setIsPayback] = useState(false)
-  const [isDenom, setIsDenom] = useState(false)
+  const [isPayback, setIsPayback] = useState(false);
+  const [isDenom, setIsDenom] = useState(false);
 
   //helpers
   const transformDate = (date) => date.split("/").reverse().join("");
@@ -22,10 +22,8 @@ export function LineChart() {
     return new Date(nArr);
   };
 
-  
-
   const getCats = useCallback((value) => {
-	const noCharts = ["Area", "Bank", "Zone", "Stand", "Asset", "Date"];
+    const noCharts = ["Area", "Bank", "Zone", "Stand", "Asset", "Date"];
     const nArr = [];
     Object.keys(value[0]).forEach((k) => {
       if (!noCharts.includes(k)) {
@@ -45,29 +43,29 @@ export function LineChart() {
   }, []);
 
   const sumColumn = useCallback((sorted, cat) => {
-	cat.includes("Payback") ? setIsPayback(true) : setIsPayback(false)
+    cat.includes("Payback") ? setIsPayback(true) : setIsPayback(false);
     const nDataPoints = [];
     const map = new Map();
     [...sorted].forEach((row) => {
+      const rowNum = parseFloat(row[cat]);
       if (map.has(row.Date)) {
         map.set(row.Date, {
-          total: map.get(row.Date).total + row[cat],
+          total: map.get(row.Date).total + rowNum,
           count: map.get(row.Date).count + 1,
         });
       } else {
-        map.set(row.Date, { total: row[cat], count: 1 });
+        map.set(row.Date, { total: rowNum, count: 1 });
       }
     });
     for (const [k, v] of map) {
-		let y = v.total / v.count
-		if (cat.includes("Payback")) {
-			y = y * .01
-			setIsPayback(true)
-		} else {
-			setIsPayback(false)
-			cat.includes("Denom") ? setIsDenom(true) : setIsDenom(false)
-		
-		}
+      let y = v.total / v.count;
+      if (cat.includes("Payback")) {
+        y = y * 0.01;
+        setIsPayback(true);
+      } else {
+        setIsPayback(false);
+        cat.includes("Denom") ? setIsDenom(true) : setIsDenom(false);
+      }
       nDataPoints.push({ x: formatDate(k), y: y });
     }
     setDataPoints(nDataPoints);

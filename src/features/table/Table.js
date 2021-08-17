@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectData, selectStatus } from "./tableSlice";
 import GridLoader from "react-spinners/GridLoader";
@@ -21,8 +21,6 @@ export function Table() {
   const transformDate = (date) => date.split("/").reverse().join("");
 
   const sort = (col, asc) => {
-    console.log("col", col);
-    console.log("asc", asc);
     const date = col === "Date";
     const nArr = [...sorted].sort((row1, row2) => {
       let a = row1[col];
@@ -33,7 +31,6 @@ export function Table() {
       }
       return asc ? a - b : b - a;
     });
-    console.log("nArr after sort", nArr);
     setSorted(nArr);
   };
 
@@ -61,7 +58,6 @@ export function Table() {
                 <th
                   id={k}
                   onClick={(e) => {
-                    console.log("target", e.target.id);
                     setActiveColumn({
                       name: e.target.id,
                       asc: !activeColumn.asc,
