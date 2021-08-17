@@ -1,5 +1,13 @@
 ## To Run
 
+Start the client:
+
+```git clone https://github.com/arthuranteater/ga-react-redux-charts.git```
+
+```npm i```
+
+```npm start```
+
 Start the server:
 
 ```git clone https://github.com/arthuranteater/ga-react-redux-charts-node-server.git```
@@ -8,13 +16,17 @@ Start the server:
 
 ```npm start```
 
-Start the client:
+OR use mock json-server on client
 
-```git clone https://github.com/arthuranteater/ga-react-redux-charts.git```
+- update assetAPI as specified in file
 
-```npm i```
+- ```npm run server```
 
-```npm start```
+
+
+
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
