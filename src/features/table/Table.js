@@ -8,6 +8,7 @@ import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
 } from "react-icons/ai";
+import { sortByColumn } from "../../common/helpers";
 
 export function Table() {
   const value = useSelector(selectData);
@@ -18,20 +19,8 @@ export function Table() {
 
   useEffect(() => setSorted(value), [value]);
 
-  const transformDate = (date) => date.split("/").reverse().join("");
-
   const sort = (col, asc) => {
-    const date = col === "Date";
-    const nArr = [...sorted].sort((row1, row2) => {
-      let a = row1[col];
-      let b = row2[col];
-      if (date) {
-        a = transformDate(a);
-        b = transformDate(b);
-      }
-      return asc ? a - b : b - a;
-    });
-    setSorted(nArr);
+    setSorted(sortByColumn(sorted, col, asc));
   };
 
   const override = css`

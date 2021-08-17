@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { selectData } from "../table/tableSlice";
+import { sortByColumn, sumColumnByDate } from "../../common/helpers";
 import CanvasJSReact from "./canvasjs.react";
 const { CanvasJSChart } = CanvasJSReact;
 
@@ -12,9 +13,6 @@ export function LineChart() {
   const [cats, setCats] = useState(null);
   const [isPayback, setIsPayback] = useState(false);
   const [isDenom, setIsDenom] = useState(false);
-
-  //helpers
-  const transformDate = (date) => date.split("/").reverse().join("");
 
   const formatDate = (date) => {
     const nArr = date.toString().match(/\d{2}/g).map(Number).reverse();
@@ -34,29 +32,13 @@ export function LineChart() {
   }, []);
 
   const sortByDate = useCallback((data) => {
-    const nArr = [...data].sort((row1, row2) => {
-      const a = transformDate(row1["Date"]);
-      const b = transformDate(row2["Date"]);
-      return a - b;
-    });
-    setSorted(nArr);
+    setSorted(sortByColumn(data));
   }, []);
 
   const sumColumn = useCallback((sorted, cat) => {
     cat.includes("Payback") ? setIsPayback(true) : setIsPayback(false);
     const nDataPoints = [];
-    const map = new Map();
-    [...sorted].forEach((row) => {
-      const rowNum = parseFloat(row[cat]);
-      if (map.has(row.Date)) {
-        map.set(row.Date, {
-          total: map.get(row.Date).total + rowNum,
-          count: map.get(row.Date).count + 1,
-        });
-      } else {
-        map.set(row.Date, { total: rowNum, count: 1 });
-      }
-    });
+    const map = sumColumnByDate(sorted, cat);
     for (const [k, v] of map) {
       let y = v.total / v.count;
       if (cat.includes("Payback")) {
