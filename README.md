@@ -2,19 +2,19 @@
 
 Start the client:
 
-```git clone https://github.com/arthuranteater/ga-react-redux-charts.git```
+- ```git clone https://github.com/arthuranteater/ga-react-redux-charts.git```
 
-```npm i```
+- ```npm i```
 
-```npm start```
+- ```npm start```
 
 Start the server:
 
-```git clone https://github.com/arthuranteater/ga-react-redux-charts-node-server.git```
+- ```git clone https://github.com/arthuranteater/ga-react-redux-charts-node-server.git```
 
-```npm i```
+- ```npm i```
 
-```npm start```
+- ```npm start```
 
 OR use mock json-server on client
 
