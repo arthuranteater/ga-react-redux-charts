@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Table } from "../features/table/Table";
 import { LineChart } from "../features/canvas-line-chart/LineChart";
 import "./App.css";
-import { runFetch, selectLimit } from "../features/table/tableSlice";
+import { runFetch, selectLimit } from "../common/state/assetSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <h2>Asset Management 1.0</h2>
       </header>
       <main style={{ maxWidth: "960px", margin: "auto" }}>
-        <LineChart/>
+        <LineChart />
         <Table />
       </main>
     </div>

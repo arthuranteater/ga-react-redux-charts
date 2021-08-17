@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getData } from "./tableAPI";
+import { getAll } from "./assetAPI";
 
 const initialState = {
   value: "",
@@ -7,13 +7,13 @@ const initialState = {
   status: "idle",
 };
 
-export const runFetch = createAsyncThunk("table/getData", async (amount) => {
-  const response = await getData();
+export const runFetch = createAsyncThunk("asset/getAll", async (amount) => {
+  const response = await getAll();
   return response;
 });
 
-export const tableSlice = createSlice({
-  name: "table",
+export const assetSlice = createSlice({
+  name: "asset",
   initialState,
 
   extraReducers: (builder) => {
@@ -28,16 +28,14 @@ export const tableSlice = createSlice({
   },
 });
 
-export const selectData = (state) => state.table.value;
-export const selectLimit = (state) => state.table.limit;
-export const selectStatus = (state) => state.table.status;
+export const selectData = (state) => state.asset.value;
+export const selectLimit = (state) => state.asset.limit;
+export const selectStatus = (state) => state.asset.status;
 
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
 export const limitData = (limit) => (dispatch, getState) => {
   if (selectLimit(getState())) {
     dispatch(runFetch(limit));
   }
 };
 
-export default tableSlice.reducer;
+export default assetSlice.reducer;

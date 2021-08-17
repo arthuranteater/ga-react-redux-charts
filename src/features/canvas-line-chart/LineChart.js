@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { selectData } from "../table/tableSlice";
-import { sortByColumn, sumColumnByDate } from "../../common/helpers";
+import { selectData } from "../../common/state/assetSlice";
+import { sortByColumn, sumColumnByDate } from "../../common/scripts/helpers";
 import CanvasJSReact from "./canvasjs.react";
 const { CanvasJSChart } = CanvasJSReact;
 

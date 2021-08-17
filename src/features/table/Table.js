@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectData, selectStatus } from "./tableSlice";
+import { selectData, selectStatus } from "../../common/state/assetSlice";
 import GridLoader from "react-spinners/GridLoader";
 import { css } from "@emotion/react";
 import "./table.css";
@@ -8,7 +8,7 @@ import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
 } from "react-icons/ai";
-import { sortByColumn } from "../../common/helpers";
+import { sortByColumn } from "../../common/scripts/helpers";
 
 export function Table() {
   const value = useSelector(selectData);

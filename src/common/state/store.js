@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tableReducer from "../features/table/tableSlice";
+import assetReducer from "./assetSlice";
 
 export const store = configureStore({
   reducer: {
-    table: tableReducer,
+    asset: assetReducer,
   },
 });
